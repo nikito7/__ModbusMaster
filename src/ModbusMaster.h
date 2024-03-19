@@ -66,11 +66,14 @@ Set to 1 to enable debugging features within class:
 Arduino class library for communicating with Modbus slaves over 
 RS232/485 (via RTU protocol).
 */
+
+
+
 class ModbusMaster
 {
   public:
     ModbusMaster();
-   
+
     void begin(uint8_t, Stream &serial);
     void idle(void (*)());
     void preTransmission(void (*)());
@@ -192,7 +195,9 @@ class ModbusMaster
     void     clearResponseBuffer();
     uint8_t  setTransmitBuffer(uint8_t, uint16_t);
     void     clearTransmitBuffer();
-    
+
+    void     setTimeout(uint32_t);
+
     void beginTransmission(uint16_t);
     uint8_t requestFrom(uint16_t, uint16_t);
     void sendBit(bool);
@@ -255,7 +260,7 @@ class ModbusMaster
     static const uint8_t ku8MBReadWriteMultipleRegisters = 0x17; ///< Modbus function 0x17 Read Write Multiple Registers
     
     // Modbus timeout [milliseconds]
-    static const uint16_t ku16MBResponseTimeout          = 750; ///< Modbus timeout [milliseconds]
+    uint16_t ku16MBResponseTimeout          = 750; ///< Modbus timeout [milliseconds]
     
     // master function that conducts Modbus transactions
     uint8_t ModbusMasterTransaction(uint8_t u8MBFunction);

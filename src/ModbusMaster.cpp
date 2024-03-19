@@ -294,6 +294,11 @@ void ModbusMaster::clearTransmitBuffer()
   }
 }
 
+void ModbusMaster::setTimeout(uint32_t _timeout)
+{
+  ku16MBResponseTimeout = _timeout;
+}
+
 
 /**
 Modbus function 0x01 Read Coils.
